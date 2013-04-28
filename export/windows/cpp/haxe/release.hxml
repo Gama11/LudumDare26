@@ -1,0 +1,13 @@
+-main ApplicationMain 
+-lib nme
+-lib flixel
+-cp source
+-cp C:\Motion-Twin\haxe/lib\nme/3,5,5/
+-cp C:\Motion-Twin\haxe/lib\flixel/1,09/
+-D nme_install_tool
+-D windows
+-D desktop
+-cp export/windows/cpp/haxe
+-cpp export/windows/cpp/obj
+--remap flash:nme
+--remap browser:native
