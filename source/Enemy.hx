@@ -35,7 +35,7 @@ class Enemy extends FlxSprite
 	
 	override public function kill():Void
 	{
-		FlxG.play("assets/sfx/EnemyKill.mp3");
+		FlxG.play("EnemyKill");
 		
 		var emitter:FlxTypedEmitter<FlxParticle> = new FlxTypedEmitter(x, y);
 		emitter.makeParticles("assets/img/enemy.png", 10);
