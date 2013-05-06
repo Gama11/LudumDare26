@@ -88,8 +88,8 @@ class GameState extends FlxState
 	{
 		R.GS = this;
 		
-		FlxG.play("assets/sfx/Select.mp3");
-		FlxG.playMusic("assets/sfx/TD2.mp3");
+		FlxG.play("Select");
+		FlxG.playMusic("TD2");
 		FlxG.bgColor = FlxG.WHITE;
 		FlxG.timeScale = 1;
 		
@@ -273,7 +273,14 @@ class GameState extends FlxState
 				
 				for (i in 0...towerGroup.length) {
 					var tower = towerGroup.members[i];
-					if (FlxMath.pointInCoordinates(cast(FlxG.mouse.x), cast(FlxG.mouse.y), cast(tower.x), cast(tower.y), 8, 8)) {
+					#if !mobile
+					if (FlxMath.pointInCoordinates(Std.int(FlxG.mouse.x), Std.int(FlxG.mouse.y), Std.int(tower.x), Std.int(tower.y), Std.int(tower.width), Std.int(tower.height))) {
+					#else
+					var dx:Float = FlxG.mouse.x - tower.x;
+					var dy:Float = FlxG.mouse.y - tower.y;
+					var distSquared:Float = dx * dx + dy * dy;
+					if (distSquared <= 20) {
+					#end
 						towerSelected = towerGroup.members[i];
 						toggleUpgradeMenu(true);
 						updateUpgradeLabels();
@@ -313,7 +320,7 @@ class GameState extends FlxState
 		if (lives >= 0) lifeGroup.members[lives].kill();
 		if (lives == 0) loseGame();
 		
-		FlxG.play("assets/sfx/Hurt.mp3");
+		FlxG.play("Hurt");
 	}
 	
 	private function hitEnemy(bullet:FlxObject, enemy:FlxObject):Void
@@ -323,7 +330,7 @@ class GameState extends FlxState
 		enemy.hurt(_bullet.damage);
 		bullet.kill();
 		enemy.flicker(0.1);
-		FlxG.play("assets/sfx/EnemyHit.mp3");
+		FlxG.play("EnemyHit");
 		
 		if (!enemy.alive) enemyText.flicker(0.2);
 	}
@@ -383,7 +390,7 @@ class GameState extends FlxState
 		
 		// Can't buy towers without money
 		if (money < towerPrice) {
-			FlxG.play("assets/sfx/Deny.mp3");
+			FlxG.play("Deny");
 			escapeBuilding();
 			return;
 		}
@@ -396,7 +403,7 @@ class GameState extends FlxState
 		for (i in 0...towerGroup.length) {
 			var tower:Tower = towerGroup.members[i];
 			if (tower.x == xPos && tower.y == yPos) {
-				FlxG.play("assets/sfx/Deny.mp3");
+				FlxG.play("Deny");
 				escapeBuilding();
 				return;
 			}
@@ -404,7 +411,7 @@ class GameState extends FlxState
 		
 		//Can't place towers on the road
 		if (map.getTile(cast(xPos / 8), cast(yPos / 8)) == 0) {
-			FlxG.play("assets/sfx/Deny.mp3");
+			FlxG.play("Deny");
 			escapeBuilding();
 			return;
 		}
@@ -413,7 +420,7 @@ class GameState extends FlxState
 		tower.index = towerGroup.length - 1;
 		towerGroup.add(tower); 
 		
-		FlxG.play("assets/sfx/Build.mp3");
+		FlxG.play("Build");
 		
 		moneyText.flicker(0.1);
 		money -= towerPrice;
@@ -422,7 +429,7 @@ class GameState extends FlxState
 		escapeBuilding();
 	}
 	
-	private function playSelectSound():Void { FlxG.play("assets/sfx/Select.mp3"); } 
+	private function playSelectSound():Void { FlxG.play("Select"); } 
 	
 	private function announceWave(End:Bool = false):Void
 	{
@@ -477,7 +484,7 @@ class GameState extends FlxState
 	
 	public function killedWave():Void
 	{
-		if (wave != 0) FlxG.play("assets/sfx/WaveDefeated.mp3");
+		if (wave != 0) FlxG.play("WaveDefeated");
 		
 		waveCounter = 3 * FlxG.framerate;
 		
@@ -502,7 +509,7 @@ class GameState extends FlxState
 		towerButton.text = "[R]estart";
 		towerButton.setOnClickCallback(resetCallback);
 		
-		FlxG.play("assets/sfx/GameOver.mp3");
+		FlxG.play("GameOver");
 	}
 	
 	private function updateRangeSprite():Void

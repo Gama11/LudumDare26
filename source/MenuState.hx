@@ -24,7 +24,14 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		FlxG.mouse.show();
+		#if flash
 		FlxG.mouse._cursorContainer.blendMode = BlendMode.INVERT;
+		#end
+		
+		#if mobile
+		FlxG.mouse.transparentMouse();
+		#end
+		
 		FlxG.bgColor = FlxG.WHITE;
 		
 		var map:FlxTilemap = new FlxTilemap();
@@ -39,7 +46,7 @@ class MenuState extends FlxState
 		var credits:FlxText = new FlxText(2, FlxG.height - 12, FlxG.width, "Made in 48h for Ludum Dare 26");
 		add(credits);
 		
-		var playButton:FlxButtonPlus = new FlxButtonPlus(0, cast(FlxG.height / 2), playButtonCallback, null, "Play");
+		var playButton:FlxButtonPlus = new FlxButtonPlus(0, cast(FlxG.height / 2), playButtonCallback, null, "Play", 25, 20);
 		R.modifyButton(playButton, 25);
 		playButton.textNormal.color = FlxG.WHITE;
 		playButton.x = cast(FlxG.width / 2- 12);

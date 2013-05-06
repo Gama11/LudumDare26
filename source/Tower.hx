@@ -64,7 +64,7 @@ class Tower extends FlxSprite
 		var bullet:Bullet = new Bullet(getMidpoint().x, getMidpoint().y, target, damage);
 		R.GS.bulletGroup.add(bullet);
 		
-		FlxG.play("assets/sfx/Shoot.mp3");
+		FlxG.play("Shoot");
 		shootCounter = 0;
 	}
 	
