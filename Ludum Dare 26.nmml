@@ -3,7 +3,8 @@
 	<app title="Ludum Dare 26" file="Ludum Dare 26" main="Main" version="0.0.1" company="Zaphod" />
 	
 	<window width="640" height="480" fps="60" orientation="portrait" resizable="true" if="web" />
-	<window width="640" height="480" fps="60" orientation="landscape" fullscreen="false" unless="web" />
+	<window width="640" height="480" fps="60" orientation="landscape" fullscreen="false" if="desktop" />
+	<window width="640" height="480" fps="60" orientation="landscape" fullscreen="true" if="mobile" />
  	
 	<set name="BUILD_DIR" value="export" />
 	
@@ -15,21 +16,51 @@
 		<sound path="data/beep.wav" id="Beep" />
 		
 		<!-- Your sound embedding code here... -->
+		<sound path="sfx/wav/Build.wav" id="Build" />
+		<sound path="sfx/wav/Deny.wav" id="Deny" />
+		<sound path="sfx/wav/EnemyHit.wav" id="EnemyHit" />
+		<sound path="sfx/wav/EnemyKill.wav" id="EnemyKill" />
+		<sound path="sfx/wav/GameOver.wav" id="GameOver" />
+		<sound path="sfx/wav/Hurt.wav" id="Hurt" />
+		<sound path="sfx/wav/Select.wav" id="Select" />
+		<sound path="sfx/wav/Shoot.wav" id="Shoot" />
+		<sound path="sfx/wav/WaveDefeated.wav" id="WaveDefeated" />
 		
+		<music path="sfx/TD2.mp3" id="TD2" />
 	</assets>
 	
 	<assets path="assets" if="desktop" >
 		<sound path="data/beep.wav" id="Beep" />
 		
 		<!-- Your sound embedding code here... -->
+		<sound path="sfx/wav/Build.wav" id="Build" />
+		<sound path="sfx/wav/Deny.wav" id="Deny" />
+		<sound path="sfx/wav/EnemyHit.wav" id="EnemyHit" />
+		<sound path="sfx/wav/EnemyKill.wav" id="EnemyKill" />
+		<sound path="sfx/wav/GameOver.wav" id="GameOver" />
+		<sound path="sfx/wav/Hurt.wav" id="Hurt" />
+		<sound path="sfx/wav/Select.wav" id="Select" />
+		<sound path="sfx/wav/Shoot.wav" id="Shoot" />
+		<sound path="sfx/wav/WaveDefeated.wav" id="WaveDefeated" />
 		
+		<music path="sfx/TD2.mp3" id="TD2" />
 	</assets>
 	
 	<assets path="assets" if="flash" >
 		<sound path="data/beep.mp3" id="Beep" />
 		
 		<!-- Your sound embedding code here... -->
+		<sound path="sfx/Build.mp3" id="Build" />
+		<sound path="sfx/Deny.mp3" id="Deny" />
+		<sound path="sfx/EnemyHit.mp3" id="EnemyHit" />
+		<sound path="sfx/EnemyKill.mp3" id="EnemyKill" />
+		<sound path="sfx/GameOver.mp3" id="GameOver" />
+		<sound path="sfx/Hurt.mp3" id="Hurt" />
+		<sound path="sfx/Select.mp3" id="Select" />
+		<sound path="sfx/Shoot.mp3" id="Shoot" />
+		<sound path="sfx/WaveDefeated.mp3" id="WaveDefeated" />
 		
+		<music path="sfx/TD2.mp3" id="TD2" />
 	</assets>
 	
 	<assets path="assets" if="target_js" >
@@ -50,15 +81,15 @@
 	<haxelib name="flixel"/>
 	
     <!--Disable the Flixel core debugger-->
-    <!--<set name="FLX_NO_DEBUG" />-->
+    <set name="FLX_NO_DEBUG" />
 	
     <!--Disable the Flixel core recording system if your not using it-->
-    <!--<set name="FLX_NO_RECORD" />-->
+    <set name="FLX_NO_RECORD" />
 	
 	<!--Optimise inputs, be careful you will get null errors if you don't use conditionals in your game-->
     <!--<set name="FLX_NO_MOUSE" if="mobile" />-->
-    <!--<set name="FLX_NO_KEYBOARD" if="mobile" />-->
-    <!--<set name="FLX_NO_TOUCH" if="desktop" />-->
-    <!--<set name="FLX_NO_JOYSTICK" />-->
+    <set name="FLX_NO_KEYBOARD" if="mobile" />
+    <set name="FLX_NO_TOUCH" />
+    <set name="FLX_NO_JOYSTICK" />
 
 </project>

@@ -10,13 +10,18 @@ class Bullet extends FlxSprite
 	public var target:Enemy;
 	public var damage:Int;
 	
-	public function new(X:Float, Y:Float, Target:Enemy, Damage:Int) 
+	public function new() 
 	{
-		target = Target;
-		damage = Damage;
-		super(X, Y);
+		super();
 		makeGraphic(3, 3);
 		blend = BlendMode.INVERT;
+	}
+	
+	public function init(X:Float, Y:Float, Target:Enemy, Damage:Int):Void
+	{
+		reset(X, Y);
+		target = Target;
+		damage = Damage;
 	}
 	
 	override public function update():Void
