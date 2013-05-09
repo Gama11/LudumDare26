@@ -12,9 +12,14 @@ class Enemy extends FlxSprite
 	public var moneyGain:Bool = true;
 	public var maxHealth:Float;
 	
-	public function new(X:Int, Y:Int) 
+	public function new() 
 	{
-		super(X, Y, "assets/img/enemy.png");
+		super(0, 0, "assets/img/enemy.png");
+	}
+	
+	public function init(X:Int, Y:Int):Void
+	{
+		reset(X, Y);
 		if (R.GS != null) {
 			health = Math.floor(R.GS.wave / 3) + 1;
 		}
@@ -35,26 +40,17 @@ class Enemy extends FlxSprite
 	
 	override public function kill():Void
 	{
-		FlxG.play("assets/sfx/EnemyKill.mp3");
+		#if !js
+		FlxG.play("EnemyKill");
+		#end
 		
-		var emitter:FlxTypedEmitter<FlxParticle> = new FlxTypedEmitter(x, y);
-		emitter.makeParticles("assets/img/enemy.png", 10);
-		var speed:Int = 10;
-		emitter.setXSpeed( -speed, speed);
-		emitter.setYSpeed( -speed, speed);
+		var emitter:EnemyGibs = R.GS.emitterGroup.recycle(EnemyGibs);
+		emitter.init(x, y);
+		emitter.start(true, 2);
 		
-		for (i in 0...10) {
-			var p:FlxParticle = emitter.members[i];
-			p.blend = BlendMode.INVERT;
-			p.makeGraphic(2, 2, FlxG.BLACK);
-			emitter.add(p);
-		}
-		R.GS.emitterGroup.add(emitter);
-		emitter.start(true);
-		
-		R.GS.enemiesToKill --;
+		R.GS.enemiesToKill--;
 		if (R.GS.enemiesToKill <= 0) R.GS.killedWave();
-		R.GS.enemyGroup.remove(this, true);
+		
 		if (moneyGain) {
 			var money:Int = 1;
 			if (R.GS.wave < 5) money = 2;

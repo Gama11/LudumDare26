@@ -12,6 +12,9 @@ import nme.display.BlendMode;
 
 class Tower extends FlxSprite 
 {
+	private static var HELPER_POINT:FlxPoint = new FlxPoint();
+	private static var HELPER_POINT_2:FlxPoint = new FlxPoint();
+	
 	public var range:Int = 40;
 	public var fireRate:Float = 1;
 	public var damage:Int = 1;
@@ -48,7 +51,7 @@ class Tower extends FlxSprite
 			indicator.visible = true;
 			indicator.alpha = shootCounter / (shootInvertall * FlxG.framerate);
 			
-			shootCounter += cast(FlxG.timeScale);
+			shootCounter += Std.int(FlxG.timeScale);
 			if (shootCounter > (shootInvertall * FlxG.framerate) * fireRate) 
 				shoot();
 		}
@@ -61,10 +64,12 @@ class Tower extends FlxSprite
 		var target:Enemy = getNearestEnemy();
 		if (target == null) return;
 		
-		var bullet:Bullet = new Bullet(getMidpoint().x, getMidpoint().y, target, damage);
-		R.GS.bulletGroup.add(bullet);
-		
-		FlxG.play("assets/sfx/Shoot.mp3");
+		var bullet:Bullet = R.GS.bulletGroup.recycle(Bullet);
+		getMidpoint(HELPER_POINT);
+		bullet.init(HELPER_POINT.x, HELPER_POINT.y, target, damage);
+		#if !js
+		FlxG.play("Shoot");
+		#end
 		shootCounter = 0;
 	}
 	
@@ -72,15 +77,21 @@ class Tower extends FlxSprite
 	{
 		var firstEnemy:Enemy = null;
 		var enemies:FlxTypedGroup<Enemy> = R.GS.enemyGroup;
+		var l:Int = enemies.members.length;
 		
-		for (i in 0...enemies.members.length) 
+		for (i in 0...l) 
 		{
-			var enemy:Enemy = cast(enemies.members[i]);
-			var distance:Float = FlxU.getDistance(new FlxPoint(x, y), new FlxPoint(enemy.x, enemy.y));
-			
-			if (distance <= range && enemy.alive) {
-				firstEnemy = enemy;
-				break;
+			var enemy:Enemy = enemies.members[i];
+			if (enemy.alive)
+			{
+				HELPER_POINT.make(x, y);
+				HELPER_POINT_2.make(enemy.x, enemy.y);
+				var distance:Float = FlxU.getDistance(HELPER_POINT, HELPER_POINT_2);
+				
+				if (distance <= range && enemy.alive) {
+					firstEnemy = enemy;
+					break;
+				}
 			}
 		}
 		
@@ -92,21 +103,21 @@ class Tower extends FlxSprite
 	public function upgradeRange():Void
 	{
 		range += 10;
-		range_LEVEL ++;
-		range_PRIZE = cast(range_PRIZE * 1.5);
+		range_LEVEL++;
+		range_PRIZE = Std.int(range_PRIZE * 1.5);
 	}
 	
 	public function upgradeDamage():Void
 	{
-		damage ++;
-		damage_LEVEL ++;
-		damage_PRIZE = cast(damage_PRIZE * 1.5);
+		damage++;
+		damage_LEVEL++;
+		damage_PRIZE = Std.int(damage_PRIZE * 1.5);
 	}
 	
 	public function upgradeFirerate():Void
 	{
 		fireRate *= 0.9;
-		firerate_LEVEL ++;
-		firerate_PRIZE = cast(firerate_PRIZE * 1.5);
+		firerate_LEVEL++;
+		firerate_PRIZE = Std.int(firerate_PRIZE * 1.5);
 	}
 }
