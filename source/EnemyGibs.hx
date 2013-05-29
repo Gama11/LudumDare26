@@ -20,7 +20,6 @@ class EnemyGibs extends FlxEmitter
 		var speed:Int = 10;
 		setXSpeed( -speed, speed);
 		setYSpeed( -speed, speed);
-		fadingAway = true;
 		
 		for (i in 0...10) {
 			var p:FlxParticle = members[i];

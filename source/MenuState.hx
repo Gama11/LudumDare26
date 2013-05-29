@@ -23,13 +23,13 @@ class MenuState extends FlxState
 	
 	override public function create():Void
 	{
-		FlxG.mouse.show();
+		useMouse = true;
 		#if flash
-		FlxG.mouse._cursorContainer.blendMode = BlendMode.INVERT;
+		FlxG.mouse.cursorContainer.blendMode = BlendMode.INVERT;
 		#end
 		
 		#if mobile
-		FlxG.mouse.hide();
+		useMouse = false;
 		#end
 		
 		FlxG.bgColor = FlxG.WHITE;
