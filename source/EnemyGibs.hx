@@ -1,6 +1,6 @@
 package ;
 
-import nme.display.BlendMode;
+import flash.display.BlendMode;
 import org.flixel.FlxEmitter;
 import org.flixel.FlxG;
 import org.flixel.FlxParticle;
@@ -20,7 +20,7 @@ class EnemyGibs extends FlxEmitter
 		var speed:Int = 10;
 		setXSpeed( -speed, speed);
 		setYSpeed( -speed, speed);
-		fadingAway = true;
+		setAlpha(1, 1, 0, 0);
 		
 		for (i in 0...10) {
 			var p:FlxParticle = members[i];
