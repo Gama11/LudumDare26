@@ -5,7 +5,6 @@ import org.flixel.FlxParticle;
 import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxG;
-import nme.display.BlendMode;
 
 class Enemy extends FlxSprite 
 {

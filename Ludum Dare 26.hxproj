@@ -17,13 +17,12 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="source" />
-    <class path="C:\HaxeToolkit\haxe/lib\nme/3,5,6/" />
     <class path="C:\HaxeToolkit\haxe/lib\flixel/2,0,0-alpha/" />
     <class path="export/windows/neko/haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="nme&#xA;nme_ver=3.5.6&#xA;nme_install_tool=1&#xA;nme3=1&#xA;windows&#xA;desktop" />
+    <option directives="nme_ver=3.5.6&#xA;nme_install_tool=1&#xA;nme3=1&#xA;windows&#xA;desktop" />
     <option flashStrict="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="False" />
@@ -31,7 +30,7 @@
   </build>
   <!-- haxelib libraries -->
   <haxelib>
-    <library name="nme" />
+    <library name="openfl" />
     <library name="flixel" />
   </haxelib>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
@@ -47,7 +46,9 @@
     <!-- example: <hidden path="..." /> -->
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand />
+  <preBuildCommand>haxelib run openfl test "Ludum Dare 26.nmml" windows
+haxelib run openfl test "Ludum Dare 26.nmml" flash -debug
+haxelib run openfl test "Ludum Dare 26.nmml" neko -debug</preBuildCommand>
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->

@@ -1,12 +1,12 @@
 package;
 
 import flash.display.BitmapData;
-import nme.Assets;
-import nme.display.BlendMode;
-import nme.display.Graphics;
-import nme.display.Sprite;
-import nme.geom.Point;
-import nme.geom.Rectangle;
+import openfl.Assets;
+import flash.display.BlendMode;
+import flash.display.Graphics;
+import flash.display.Sprite;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 import org.flixel.FlxG;
 import org.flixel.FlxGroup;
 import org.flixel.FlxObject;
