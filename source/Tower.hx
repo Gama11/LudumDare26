@@ -8,7 +8,6 @@ import org.flixel.plugin.photonstorm.FlxVelocity;
 import org.flixel.FlxU;
 import org.flixel.plugin.photonstorm.FlxMath;
 import org.flixel.FlxTypedGroup;
-import nme.display.BlendMode;
 
 class Tower extends FlxSprite 
 {
@@ -82,7 +81,7 @@ class Tower extends FlxSprite
 		for (i in 0...l) 
 		{
 			var enemy:Enemy = enemies.members[i];
-			if (enemy.alive)
+			if (enemy != null && enemy.alive)
 			{
 				HELPER_POINT.make(x, y);
 				HELPER_POINT_2.make(enemy.x, enemy.y);

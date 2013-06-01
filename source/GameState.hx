@@ -1,12 +1,12 @@
 package;
 
 import flash.display.BitmapData;
-import nme.Assets;
-import nme.display.BlendMode;
-import nme.display.Graphics;
-import nme.display.Sprite;
-import nme.geom.Point;
-import nme.geom.Rectangle;
+import openfl.Assets;
+import flash.display.BlendMode;
+import flash.display.Graphics;
+import flash.display.Sprite;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 import org.flixel.FlxG;
 import org.flixel.FlxGroup;
 import org.flixel.FlxObject;
@@ -196,9 +196,9 @@ class GameState extends FlxState
 		
 		var buttonYOffset:Int = 18;
 		
-		towerButton = new FlxButtonPlus(2, FlxG.height - buttonYOffset, buildTowerCallback, null, "Buy [T]ower ($" + towerPrice + ")", 120);
-		nextWaveButton = new FlxButtonPlus(120, FlxG.height - buttonYOffset, nextWaveCallback, null, "[N]ext Wave");
-		speedButton = new FlxButtonPlus(FlxG.width - 20, FlxG.height - buttonYOffset, speedButtonCallback, null, "x1", 20);
+		towerButton = new FlxButtonPlus(2, FlxG.height - buttonYOffset, buildTowerCallback, [false], "Buy [T]ower ($" + towerPrice + ")", 120);
+		nextWaveButton = new FlxButtonPlus(120, FlxG.height - buttonYOffset, nextWaveCallback, [false], "[N]ext Wave");
+		speedButton = new FlxButtonPlus(FlxG.width - 20, FlxG.height - buttonYOffset, speedButtonCallback, [false], "x1", 20);
 		
 		R.modifyButton(towerButton, 100);
 		R.modifyButton(nextWaveButton);
