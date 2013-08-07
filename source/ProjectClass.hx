@@ -1,8 +1,8 @@
 package;
 
 import flash.Lib;
-import org.flixel.FlxG;
-import org.flixel.FlxGame;
+import flixel.FlxG;
+import flixel.FlxGame;
 	
 class ProjectClass extends FlxGame
 {	
@@ -20,15 +20,15 @@ class ProjectClass extends FlxGame
 		this.y = 0.5 * (stageHeight - 240 * ratio);
 		
 		#if android
-		FlxG.addSound("Build");
-		FlxG.addSound("Deny");
-		FlxG.addSound("EnemyHit");
-		FlxG.addSound("EnemyKill");
-		FlxG.addSound("GameOver");
-		FlxG.addSound("Hurt");
-		FlxG.addSound("Select");
-		FlxG.addSound("Shoot");
-		FlxG.addSound("WaveDefeated");
+		FlxG.sound.add("Build");
+		FlxG.sound.add("Deny");
+		FlxG.sound.add("EnemyHit");
+		FlxG.sound.add("EnemyKill");
+		FlxG.sound.add("GameOver");
+		FlxG.sound.add("Hurt");
+		FlxG.sound.add("Select");
+		FlxG.sound.add("Shoot");
+		FlxG.sound.add("WaveDefeated");
 		#end
 	}
 }

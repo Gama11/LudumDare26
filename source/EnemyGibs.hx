@@ -1,14 +1,11 @@
 package ;
 
+import flixel.util.FlxColor;
 import flash.display.BlendMode;
-import org.flixel.FlxEmitter;
-import org.flixel.FlxG;
-import org.flixel.FlxParticle;
+import flixel.effects.particles.FlxEmitter;
+import flixel.FlxG;
+import flixel.effects.particles.FlxParticle;
 
-/**
- * ...
- * @author Zaphod
- */
 class EnemyGibs extends FlxEmitter
 {
 
@@ -25,11 +22,11 @@ class EnemyGibs extends FlxEmitter
 		for (i in 0...10) {
 			var p:FlxParticle = members[i];
 			p.blend = BlendMode.INVERT;
-			p.makeGraphic(2, 2, FlxG.BLACK);
+			p.makeGraphic(2, 2, FlxColor.BLACK);
 			add(p);
 		}
 		
-		R.GS.emitterGroup.add(this);
+		R.PS.emitterGroup.add(this);
 	}
 	
 	public function init(x:Float, y:Float):Void

@@ -1,9 +1,9 @@
 package;
 
-import org.flixel.FlxSprite;
-import org.flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxG;
 import flash.display.BlendMode;
-import org.flixel.plugin.photonstorm.FlxVelocity;
+import flixel.util.FlxVelocity;
 
 class Bullet extends FlxSprite 
 {

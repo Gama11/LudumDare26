@@ -1,13 +1,13 @@
 package;
 
-import org.flixel.FlxGroup;
-import org.flixel.FlxPoint;
-import org.flixel.FlxSprite;
-import org.flixel.FlxG;
-import org.flixel.plugin.photonstorm.FlxVelocity;
-import org.flixel.FlxU;
-import org.flixel.plugin.photonstorm.FlxMath;
-import org.flixel.FlxTypedGroup;
+import flixel.util.FlxMath;
+import flixel.group.FlxGroup;
+import flixel.util.FlxPoint;
+import flixel.FlxSprite;
+import flixel.FlxG;
+import flixel.util.FlxVelocity;
+import flixel.util.FlxMath;
+import flixel.group.FlxTypedGroup;
 
 class Tower extends FlxSprite 
 {
@@ -38,7 +38,7 @@ class Tower extends FlxSprite
 		
 		indicator = new FlxSprite(getMidpoint().x - 1, getMidpoint().y - 1);
 		indicator.makeGraphic(2, 2);
-		R.GS.towerIndicators.add(indicator);
+		R.PS.towerIndicators.add(indicator);
 	}
 	
 	override public function update():Void
@@ -63,19 +63,17 @@ class Tower extends FlxSprite
 		var target:Enemy = getNearestEnemy();
 		if (target == null) return;
 		
-		var bullet:Bullet = R.GS.bulletGroup.recycle(Bullet);
+		var bullet:Bullet = R.PS.bulletGroup.recycle(Bullet);
 		getMidpoint(HELPER_POINT);
 		bullet.init(HELPER_POINT.x, HELPER_POINT.y, target, damage);
-		#if !js
-		FlxG.play("Shoot");
-		#end
+		FlxG.sound.play("Shoot");
 		shootCounter = 0;
 	}
 	
 	private function getNearestEnemy():Enemy
 	{
 		var firstEnemy:Enemy = null;
-		var enemies:FlxTypedGroup<Enemy> = R.GS.enemyGroup;
+		var enemies:FlxTypedGroup<Enemy> = R.PS.enemyGroup;
 		var l:Int = enemies.members.length;
 		
 		for (i in 0...l) 
@@ -83,9 +81,9 @@ class Tower extends FlxSprite
 			var enemy:Enemy = enemies.members[i];
 			if (enemy != null && enemy.alive)
 			{
-				HELPER_POINT.make(x, y);
-				HELPER_POINT_2.make(enemy.x, enemy.y);
-				var distance:Float = FlxU.getDistance(HELPER_POINT, HELPER_POINT_2);
+				HELPER_POINT.set(x, y);
+				HELPER_POINT_2.set(enemy.x, enemy.y);
+				var distance:Float = FlxMath.getDistance(HELPER_POINT, HELPER_POINT_2);
 				
 				if (distance <= range && enemy.alive) {
 					firstEnemy = enemy;

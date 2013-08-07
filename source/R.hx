@@ -1,15 +1,16 @@
 package;
 
-import org.flixel.plugin.photonstorm.FlxButtonPlus;
-import org.flixel.FlxG;
+import flixel.util.FlxColor;
+import flixel.addons.ui.FlxButtonPlus;
+import flixel.FlxG;
 
 class R 
 {
-	static public var GS:GameState;
+	static public var PS:PlayState;
 	
 	static public function modifyButton(B:FlxButtonPlus, Width:Int = 70):Void
 	{
-		B.textNormal.color = FlxG.BLACK;
+		B.textNormal.color = FlxColor.BLACK;
 		B.textHighlight.color = 0xFF808080;
 		B.buttonHighlight.makeGraphic(Width, 20, 0);
 		B.buttonNormal.makeGraphic(Width, 20, 0);
