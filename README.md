@@ -5,7 +5,7 @@ This is my entry to Ludum Dare 26, the theme was *"Minimalism"*. My goal was to 
 
 A slightly improved version has been integrated into [flixel-demos](https://github.com/HaxeFlixel/flixel-demos) and is [playable on the HaxeFlixel website](http://haxeflixel.com/demos/MinimalistTD/).  
 
-![Gameplay screenshot](http://www.ludumdare.com/compo/wp-content/compo2/thumb/4f6ef9e0a6a9ed767561032075bfd227.jpg)
+![Gameplay screenshot](screenshot.png)
 
 ## Tools used:
 
